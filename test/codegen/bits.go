@@ -347,6 +347,11 @@ func bitSetTest(x int) bool {
 	return x&9 == 9
 }
 
+func isBitSetTest(m []byte, n uint) bool {
+	// amd64:"BTL\tDX, CX"
+	return m[n/8]&(1<<(n%8)) != 0
+}
+
 // mask contiguous one bits
 func cont1Mask64U(x uint64) uint64 {
 	// s390x:"RISBGZ\t[$]16, [$]47, [$]0,"
